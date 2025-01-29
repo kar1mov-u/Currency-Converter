@@ -19,6 +19,7 @@ func Start() {
 			huh.NewOption("EUR", "EUR"),
 			huh.NewOption("GBP", "GBP"),
 			huh.NewOption("JPY", "JPY"),
+			huh.NewOption("UZS", "UZS"),
 		).
 		Value(&fromCur).Run()
 
@@ -30,6 +31,7 @@ func Start() {
 			huh.NewOption("EUR", "EUR"),
 			huh.NewOption("GBP", "GBP"),
 			huh.NewOption("JPY", "JPY"),
+			huh.NewOption("UZS", "UZS"),
 		).
 		Value(&toCur).Run()
 
@@ -43,9 +45,9 @@ func Start() {
 		log.Fatalf("Please enter valid numbers")
 		return
 	}
-	fmt.Println(amount)
 
-	ApiCal(fromCur, toCur, amount)
+	res, dif := ApiCal(fromCur, toCur, amount)
+	fmt.Printf("Converted: %.2f %s → %.2f %s (Rate: %.4f)\n", amount, fromCur, res, toCur, dif)
 
 }
 
